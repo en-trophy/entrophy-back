@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 @Entity
 @Table(name = "category")
 public class Category {
@@ -26,7 +25,7 @@ public class Category {
 
     protected Category() {}
 
-    public void setCategory(CategoryRequest categoryRequest) {
+    public Category(CategoryRequest categoryRequest) {
         this.code = categoryRequest.code();
         this.name = categoryRequest.name();
         this.iconEmoji = categoryRequest.iconEmoji();
