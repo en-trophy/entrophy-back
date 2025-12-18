@@ -5,6 +5,7 @@ import com.entrophy.entrophy_back.category.dto.response.CategoryResponse;
 import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.service.LessonService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class LessonController {
 
     // 레슨 생성
     @PostMapping
-    public ResponseEntity<LessonResponse> createLesson(@RequestBody LessonRequest lessonRequest) {
+    public ResponseEntity<LessonResponse> createLesson(@Valid @RequestBody LessonRequest lessonRequest) {
         LessonResponse created = lessonService.createLesson(lessonRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }

@@ -39,7 +39,7 @@ public class LessonService {
     //해당 카테고리의 전체 레슨 조회
     public List<LessonResponse> getLessonsByCategory(Long categoryId) {
 
-        //카테고리 존제하는지 검사
+        //카테고리 존재하는지 검사
         if (!categoryRepository.existsById(categoryId)) {
             throw new IllegalArgumentException("해당 id의 카테고리 없음");
         }
