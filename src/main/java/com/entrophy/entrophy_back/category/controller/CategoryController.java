@@ -28,7 +28,7 @@ public class CategoryController {
 
     //카테고리 조회
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponse> getCategory(@PathVariable Integer id){
+    public ResponseEntity<CategoryResponse> getCategory(@PathVariable Long id){
         CategoryResponse category = categoryService.getCategory(id);
         return ResponseEntity.ok(category);
     }
