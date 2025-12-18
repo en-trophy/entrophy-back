@@ -1,9 +1,12 @@
 package com.entrophy.entrophy_back.lesson.service;
 
+import com.entrophy.entrophy_back.category.entity.Category;
 import com.entrophy.entrophy_back.category.repository.CategoryRepository;
+import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.entity.Lesson;
 import com.entrophy.entrophy_back.lesson.repository.LessonRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,21 @@ public class LessonService {
     // 레슨 조회
     public LessonResponse getLesson(Long id) {
         Lesson lesson = lessonRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 id의 레슨 없음"));
+        return toResponseDto(lesson);
+    }
+
+
+    // 레슨 정보 수정
+    @Transactional
+    public LessonResponse updateLesson(Long id, LessonRequest lessonRequest) {
+        Lesson lesson = lessonRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 id의 레슨 없음"));
+
+        Category category = lesson.getCategory();
+
+        category = categoryRepository.findById(lessonRequest.categoryId()).orElseThrow(() -> new IllegalArgumentException("해당 id의 카테고리 없음"));
+
+        lesson.update(category, lessonRequest);
+
         return toResponseDto(lesson);
     }
 

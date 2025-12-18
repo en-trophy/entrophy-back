@@ -2,6 +2,7 @@ package com.entrophy.entrophy_back.lesson.controller;
 
 
 import com.entrophy.entrophy_back.category.dto.response.CategoryResponse;
+import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.service.LessonService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,12 @@ public class LessonController {
         return ResponseEntity.ok(lesson);
     }
 
-
-
+    // 레슨 정보 수정
+    @PutMapping("/{id}")
+    public ResponseEntity<LessonResponse> updateLesson(@PathVariable Long id, @RequestBody LessonRequest lessonRequest) {
+        LessonResponse lesson = lessonService.updateLesson(id, lessonRequest);
+        return ResponseEntity.ok(lesson);
+    }
 
 
 }
