@@ -48,15 +48,15 @@ public class AnswerFrameService {
         return toResponseDto(frame);
     }
 
-    private AnswerFrameResponse toResponseDto(AnswerFrame frame) {
+    private AnswerFrameResponse toResponseDto(AnswerFrame answerFrame) {
         return new AnswerFrameResponse(
-                frame.getId(),
-                frame.getLesson().getId(),
-                frame.getSeq(),
-                frame.getHand(),
-                frame.getFrameMeta(),
-                frame.getCreatedAt(),
-                frame.getUpdatedAt()
+                answerFrame.getId(),
+                answerFrame.getLesson().getId(),
+                answerFrame.getSeq(),
+                answerFrame.getHand(),
+                answerFrame.getFrameMeta(),
+                answerFrame.getCreatedAt(),
+                answerFrame.getUpdatedAt()
         );
     }
 
