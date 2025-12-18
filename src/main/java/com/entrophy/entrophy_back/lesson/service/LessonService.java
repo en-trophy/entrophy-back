@@ -19,6 +19,17 @@ public class LessonService {
     private final LessonRepository lessonRepository;
     private final CategoryRepository categoryRepository;
 
+
+    // 생성
+    public LessonResponse createLesson(LessonRequest lessonRequest) {
+        Category category = categoryRepository.findById(lessonRequest.categoryId()).orElseThrow(() -> new IllegalArgumentException("해당 id의 카테고리 없음"));
+
+        Lesson lesson = new Lesson(category, lessonRequest);
+        lessonRepository.save(lesson);
+        return toResponseDto(lesson);
+    }
+
+
     // 전체 레슨 조회
     public List<LessonResponse> getLessons() {
         return lessonRepository.findAll().stream().map(this::toResponseDto).toList();

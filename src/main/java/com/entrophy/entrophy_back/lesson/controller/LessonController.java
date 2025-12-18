@@ -6,6 +6,7 @@ import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.service.LessonService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,13 @@ public class LessonController {
 
     private final LessonService lessonService;
 
+
+    // 레슨 생성
+    @PostMapping
+    public ResponseEntity<LessonResponse> createLesson(@RequestBody LessonRequest lessonRequest) {
+        LessonResponse created = lessonService.createLesson(lessonRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
 
     // 전체 레슨 조회
     @GetMapping
