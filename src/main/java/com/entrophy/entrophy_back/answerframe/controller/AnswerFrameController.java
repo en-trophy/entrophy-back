@@ -4,6 +4,7 @@ package com.entrophy.entrophy_back.answerframe.controller;
 import com.entrophy.entrophy_back.answerframe.dto.request.AnswerFrameRequest;
 import com.entrophy.entrophy_back.answerframe.dto.response.AnswerFrameResponse;
 import com.entrophy.entrophy_back.answerframe.service.AnswerFrameService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class AnswerFrameController {
 
 
     // 정답 프레임 생성
+    @Operation(summary = "정답 프레임 생성", description = "특정 레슨에 대한 정답 프레임 데이터를 생성")
     @PostMapping
     public ResponseEntity<AnswerFrameResponse> createAnswerFrame(@PathVariable Long lessonId, @RequestBody AnswerFrameRequest answerFrameRequest
     ) {
@@ -28,9 +30,18 @@ public class AnswerFrameController {
     }
 
     // 정답 프레임 조회
+    @Operation(summary = "정답 프레임 조회", description = "특정 레슨에 대한 정답 프레임 데이터를 조회")
     @GetMapping
     public ResponseEntity<List<AnswerFrameResponse>> getAnswerFrames(@PathVariable Long lessonId) {
         List<AnswerFrameResponse> answerFrames = answerFrameService.getAnswerFrames(lessonId);
         return ResponseEntity.ok(answerFrames);
+    }
+
+    // 정답 프레임 수정
+    @PutMapping("/{seq}")
+    @Operation(summary = "정답 프레임 수정", description = "정답 프레임 seq째 데이터 정보 수정")
+    public ResponseEntity<AnswerFrameResponse> updateAnswerFrame(@PathVariable Long lessonId, @PathVariable Integer seq, @RequestBody AnswerFrameRequest answerFrameRequest) {
+        AnswerFrameResponse answerFrameResponse = answerFrameService.updateAnswerFrame(lessonId, seq, answerFrameRequest);
+        return ResponseEntity.ok(answerFrameResponse);
     }
 }
