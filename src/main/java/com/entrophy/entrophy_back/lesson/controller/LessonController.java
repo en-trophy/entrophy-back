@@ -34,6 +34,13 @@ public class LessonController {
         return ResponseEntity.ok(lessons);
     }
 
+    //해당 카테고리의 전체 레슨 조회
+    @GetMapping(params = "categoryId")
+    public ResponseEntity<List<LessonResponse>> getLessonsByCategory(@RequestParam Long categoryId) {
+        List<LessonResponse> lessons = lessonService.getLessonsByCategory(categoryId);
+        return ResponseEntity.ok(lessons);
+    }
+
     // 레슨 조회
     @GetMapping("/{id}")
     public ResponseEntity<LessonResponse> getLesson(@PathVariable Long id) {
