@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface AnswerFrameRepository extends JpaRepository<AnswerFrame, Long> {
 
     List<AnswerFrame> findByLessonIdOrderBySeqAsc(Long lessonId);
-
+    Optional<AnswerFrame> findByLessonIdAndSeq(Long lessonId, Integer seq);
 }

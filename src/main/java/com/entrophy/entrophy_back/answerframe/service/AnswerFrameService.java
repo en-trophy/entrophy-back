@@ -6,6 +6,7 @@ import com.entrophy.entrophy_back.answerframe.entity.AnswerFrame;
 import com.entrophy.entrophy_back.answerframe.repository.AnswerFrameRepository;
 import com.entrophy.entrophy_back.lesson.entity.Lesson;
 import com.entrophy.entrophy_back.lesson.repository.LessonRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,17 @@ public class AnswerFrameService {
         return answerFrameRepository.findByLessonIdOrderBySeqAsc(lessonId).stream().map(this::toResponseDto).toList();
     }
 
+    // 정답 프레임 수정
+    @Transactional
+    public AnswerFrameResponse updateAnswerFrame(Long lessonId, Integer seq, AnswerFrameRequest answerFrameRequest) {
+
+        AnswerFrame frame = answerFrameRepository.findByLessonIdAndSeq(lessonId, seq).orElseThrow(() -> new IllegalArgumentException("해당 레슨/seq의 정답 프레임 없음"));
+
+        frame.update(answerFrameRequest);
+
+        return toResponseDto(frame);
+    }
+
     private AnswerFrameResponse toResponseDto(AnswerFrame frame) {
         return new AnswerFrameResponse(
                 frame.getId(),
@@ -47,6 +59,5 @@ public class AnswerFrameService {
                 frame.getUpdatedAt()
         );
     }
-
 
 }
