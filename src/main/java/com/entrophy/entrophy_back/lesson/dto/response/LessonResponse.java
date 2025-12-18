@@ -5,11 +5,9 @@ public record LessonResponse(
         Long categoryId,
         String categoryName,
         String title,
-        String lessonKey,
         String signLanguage,
         Integer difficulty,
         String type,
-        Boolean isActive,
         String imageUrl,
         String videoUrl
 ) {
