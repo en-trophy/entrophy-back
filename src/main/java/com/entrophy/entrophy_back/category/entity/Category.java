@@ -12,7 +12,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String code;
 
@@ -25,6 +25,7 @@ public class Category {
 
     protected Category() {}
 
+    //생성
     public Category(CategoryRequest categoryRequest) {
         this.code = categoryRequest.code();
         this.name = categoryRequest.name();

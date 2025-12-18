@@ -32,7 +32,7 @@ public class CategoryService {
     }
 
     //카테고리 조회
-    public CategoryResponse getCategory(Integer id){
+    public CategoryResponse getCategory(Long id){
         Category category = categoryRepository.findById(id).orElseThrow(()-> new IllegalArgumentException());
         return toResponseDto(category);
     }
