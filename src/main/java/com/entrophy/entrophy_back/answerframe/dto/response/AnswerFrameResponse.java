@@ -1,6 +1,6 @@
 package com.entrophy.entrophy_back.answerframe.dto.response;
 
-import tools.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.time.LocalDateTime;
 

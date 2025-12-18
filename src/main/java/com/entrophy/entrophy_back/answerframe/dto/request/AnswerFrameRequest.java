@@ -1,6 +1,6 @@
 package com.entrophy.entrophy_back.answerframe.dto.request;
 
-import tools.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public record AnswerFrameRequest(
         Integer seq,
