@@ -5,6 +5,7 @@ import com.entrophy.entrophy_back.answerframe.dto.request.AnswerFrameRequest;
 import com.entrophy.entrophy_back.answerframe.dto.response.AnswerFrameResponse;
 import com.entrophy.entrophy_back.answerframe.service.AnswerFrameService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/lessons/{lessonId}/answer-frames")
+@Tag(name = "AI용) 정답 프레임 API", description = "정답프레임 생성, 조회, 수정 기능 제공")
 public class AnswerFrameController {
 
     private final AnswerFrameService answerFrameService;
