@@ -20,6 +20,12 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
 
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    image-container: lesson-images
+    video-container: lesson-videos
+
 logging:
   level:
     org.springdoc: DEBUG
