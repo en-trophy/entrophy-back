@@ -19,3 +19,9 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    org.springdoc: DEBUG
+    io.swagger.v3: DEBUG
+    org.springframework.web: INFO
