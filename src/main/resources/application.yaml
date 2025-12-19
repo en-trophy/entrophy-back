@@ -25,3 +25,5 @@ logging:
     org.springdoc: DEBUG
     io.swagger.v3: DEBUG
     org.springframework.web: INFO
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: INFO
