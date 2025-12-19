@@ -5,6 +5,8 @@ import com.entrophy.entrophy_back.category.dto.response.CategoryResponse;
 import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.service.LessonService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,11 +37,11 @@ public class LessonController {
         return ResponseEntity.ok(lessons);
     }
 
-    //해당 카테고리의 전체 레슨 조회
-    @GetMapping(params = "categoryId")
-    public ResponseEntity<List<LessonResponse>> getLessonsByCategory(@RequestParam Long categoryId) {
-        List<LessonResponse> lessons = lessonService.getLessonsByCategory(categoryId);
-        return ResponseEntity.ok(lessons);
+    // 카테고리별 레슨 조회
+    @Operation(summary = "카테고리별 레슨 목록 조회", description = "categoryId에 해당하는 레슨 목록을 조회")
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<LessonResponse>> getLessonsByCategory(@Parameter(description = "카테고리 ID", example = "4") @PathVariable Long categoryId) {
+        return ResponseEntity.ok(lessonService.getLessonsByCategory(categoryId));
     }
 
     // 레슨 조회
