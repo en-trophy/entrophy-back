@@ -26,6 +26,14 @@ azure:
     image-container: lesson-images
     video-container: lesson-videos
 
+admin:
+  upload-key: ${ADMIN_UPLOAD_KEY}
+
+media:
+  upload:
+    image-max-mb: 10
+    video-max-mb: 200
+
 logging:
   level:
     org.springdoc: DEBUG
