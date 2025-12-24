@@ -20,6 +20,20 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
 
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    image-container: lesson-images
+    video-container: lesson-videos
+
+admin:
+  upload-key: ${ADMIN_UPLOAD_KEY}
+
+media:
+  upload:
+    image-max-mb: 10
+    video-max-mb: 200
+
 logging:
   level:
     org.springdoc: DEBUG
