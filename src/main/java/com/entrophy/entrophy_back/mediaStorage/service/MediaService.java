@@ -1,14 +1,13 @@
-package com.entrophy.entrophy_back. mediaStorage.service;
+package com.entrophy.entrophy_back.mediaStorage.service;
 
 import com.entrophy.entrophy_back.mediaStorage.dto.response.MediaUploadResponse;
-import com.entrophy.entrophy_back. mediaStorage.model.MediaType;
+import com.entrophy.entrophy_back.mediaStorage.model.MediaType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.UUID;
 
 @Service
