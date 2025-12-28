@@ -1,6 +1,10 @@
 server:
   port: ${PORT:8080}
 
+jwt:
+  secret: ${JWT_SECRET:change-me-to-a-long-random-string-change-me-to-a-long-random-string}
+  access-token-exp-minutes: ${JWT_ACCESS_EXP_MINUTES:60}
+
 spring:
   application:
     name: entrophy-back
