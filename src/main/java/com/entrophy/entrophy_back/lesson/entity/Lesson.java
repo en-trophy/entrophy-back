@@ -24,7 +24,7 @@ public class Lesson {
 
     private String title;
 
-    //정적이랑 동적 (STATIC / DYNAMIC)
+    //단어, 문장으로 구분 (word/phrase)
     private String type;
 
     private String signLanguage;
