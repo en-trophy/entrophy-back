@@ -9,6 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,5 +57,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Void> handleNoResourceFound(NoResourceFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUsernameNotFound(UsernameNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ErrorResponse(401, HttpStatus.UNAUTHORIZED, e.getMessage()));
+    }
+
 
 }
