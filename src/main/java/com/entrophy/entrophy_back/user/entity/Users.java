@@ -1,6 +1,7 @@
 package com.entrophy.entrophy_back.user.entity;
 
 
+import com.entrophy.entrophy_back.auth.dto.request.SignUpRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,14 @@ public class Users {
     private LocalDateTime updatedAt;
 
     protected Users(){}
+
+    public Users(SignUpRequest request, String encodedPassword) {
+        this.loginId = request.loginId();
+        this.password = encodedPassword;
+        this.name = request.name();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 
 
 }
