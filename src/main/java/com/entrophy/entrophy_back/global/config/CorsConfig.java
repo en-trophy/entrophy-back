@@ -11,6 +11,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
+                        "http://localhost:*",
                         "https://ashy-river-02de56e00.6.azurestaticapps.net"
 
                 )
