@@ -27,6 +27,10 @@ public class Lesson {
     //단어, 문장으로 구분 (word/phrase)
     private String type;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private LessonMode mode;
+
     private String signLanguage;
 
     private int difficulty;
