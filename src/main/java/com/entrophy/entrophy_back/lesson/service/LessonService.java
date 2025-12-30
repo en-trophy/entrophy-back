@@ -79,6 +79,7 @@ public class LessonService {
                 lesson.getSignLanguage(),
                 lesson.getDifficulty(),
                 lesson.getType(),
+                lesson.getMode(),
                 lesson.getImageUrl(),
                 lesson.getVideoUrl()
         );
