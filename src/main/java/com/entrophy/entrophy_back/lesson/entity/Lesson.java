@@ -48,20 +48,23 @@ public class Lesson {
         this.category = category;
         this.title = lessonRequest.title();
         this.signLanguage = lessonRequest.signLanguage();
-        this.difficulty =lessonRequest.difficulty();
-        this.type =  lessonRequest.type();
+        this.difficulty = lessonRequest.difficulty();
+        this.type = lessonRequest.type();
+        this.mode = lessonRequest.mode();
         this.imageUrl = lessonRequest.imageUrl();
         this.videoUrl = lessonRequest.videoUrl();
     }
 
-    // 업데이트
+    //수정
     public void update(Category category, LessonRequest lessonRequest) {
         this.category = category;
         this.title = lessonRequest.title();
         this.signLanguage = lessonRequest.signLanguage();
         this.difficulty = lessonRequest.difficulty();
         this.type = lessonRequest.type();
+        this.mode = lessonRequest.mode();
         this.imageUrl = lessonRequest.imageUrl();
         this.videoUrl = lessonRequest.videoUrl();
     }
+
 }
