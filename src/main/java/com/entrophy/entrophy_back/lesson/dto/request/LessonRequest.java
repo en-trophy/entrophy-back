@@ -1,5 +1,6 @@
 package com.entrophy.entrophy_back.lesson.dto.request;
 
+import com.entrophy.entrophy_back.lesson.entity.LessonMode;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +23,9 @@ public record LessonRequest(
 
         @NotBlank(message = "type은 필수")
         String type,
+
+        @NotNull(message = "mode는 필수")
+        LessonMode mode,
 
         String imageUrl,
         String videoUrl
