@@ -7,6 +7,7 @@ import com.entrophy.entrophy_back.learningHistory.dto.response.LearningHistoryDe
 import com.entrophy.entrophy_back.learningHistory.service.LearningHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class LearningHistoryController {
             summary = "학습 기록 생성",
             description = "레슨 완료 화면에서 최종 점수/시간/피드백을 저장"
     )
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     public ResponseEntity<LearningHistoryCreateResponse> create(
             @Valid @RequestBody LearningHistoryCreateRequest request
@@ -44,7 +46,7 @@ public class LearningHistoryController {
             summary = "카테고리별 학습 기록 조회",
             description = "특정 유저의 특정 카테고리 학습 기록을 날짜 범위로 조회함"
     )
-
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/by-category")
     public ResponseEntity<List<LearningHistoryDetailResponse>> getByCategory(
             @Parameter(description = "유저 PK", example = "1") @RequestParam Long userId,
@@ -62,6 +64,7 @@ public class LearningHistoryController {
             summary = "특정 날짜 학습 기록 상세 조회",
             description = "날짜를 클릭했을 때 해당 날짜의 학습 로그(레슨/점수/피드백)를 반환함"
     )
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping
     public ResponseEntity<List<LearningHistoryDetailResponse>> getByDate(
             @Parameter(description = "유저 PK", example = "1") @RequestParam Long userId,
