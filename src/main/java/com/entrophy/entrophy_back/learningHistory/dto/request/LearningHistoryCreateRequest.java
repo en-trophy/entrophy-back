@@ -1,8 +1,6 @@
 package com.entrophy.entrophy_back.learningHistory.dto.request;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
-public record LearningHistoryRequest(
+public record LearningHistoryCreateRequest(
 
         Long userId,
 
