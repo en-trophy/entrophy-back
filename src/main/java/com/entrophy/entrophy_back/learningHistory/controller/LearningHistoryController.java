@@ -56,19 +56,6 @@ public class LearningHistoryController {
     }
 
 
-    //날짜별 학습 요약
-    @Operation(
-            summary = "날짜별 학습 요약 조회(캘린더용)",
-            description = "특정 유저의 학습 기록을 날짜별로 집계하여 반환함 (count/총점/총시간)"
-    )
-    @GetMapping("/daily")
-    public ResponseEntity<List<LearningHistoryDailySummaryResponse>> getDailySummary(
-            @Parameter(description = "유저 PK", example = "1") @RequestParam Long userId,
-            @Parameter(description = "시작 날짜(포함)", example = "2025-12-01") @RequestParam LocalDate from,
-            @Parameter(description = "종료 날짜(포함)", example = "2025-12-31") @RequestParam LocalDate to
-    ) {
-        return ResponseEntity.ok(learningHistoryService.getDailySummary(userId, from, to));
-    }
 
     //특정 날짜 학습 기록
     @Operation(

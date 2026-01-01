@@ -19,19 +19,4 @@ public interface LearningHistoryRepository extends JpaRepository<LearningHistory
     List<LearningHistory> findByUser_IdAndCategory_IdAndCreatedAtBetweenOrderByCreatedAtDesc(
             Long userId, Long categoryId, LocalDateTime from, LocalDateTime to
     );
-
-    @Query("""
-        select new com.entrophy.entrophy_back.learningHistory.dto.response.LearningHistoryDailySummaryResponse(
-            function('date', h.createdAt),
-            count(h.id),
-            sum(h.score),
-            sum(h.practiceSeconds)
-        )
-        from LearningHistory h
-        where h.user.id = :userId
-          and h.createdAt between :from and :to
-        group by function('date', h.createdAt)
-        order by function('date', h.createdAt)
-    """)
-    List<LearningHistoryDailySummaryResponse> getDailySummary(Long userId, LocalDateTime from, LocalDateTime to);
 }

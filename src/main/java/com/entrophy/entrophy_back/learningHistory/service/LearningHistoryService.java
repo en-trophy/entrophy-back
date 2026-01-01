@@ -58,14 +58,6 @@ public class LearningHistoryService {
                 .toList();
     }
 
-    // 날짜별 학습 요약 조회 (캘린더용)
-    @Transactional(readOnly = true)
-    public List<LearningHistoryDailySummaryResponse> getDailySummary(Long userId, LocalDate from, LocalDate to) {
-        LocalDateTime start = from.atStartOfDay();
-        LocalDateTime end = to.plusDays(1).atStartOfDay().minusNanos(1);
-        return learningHistoryRepository.getDailySummary(userId, start, end);
-    }
-
     // 특정 날짜 상세 로그 조회
     @Transactional(readOnly = true)
     public List<LearningHistoryDetailResponse> getByDate(Long userId, LocalDate date) {
