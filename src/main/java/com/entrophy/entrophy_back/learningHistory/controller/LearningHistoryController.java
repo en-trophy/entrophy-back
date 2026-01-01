@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Tag(name = "LearningHistory", description = "학습 기록 API")
+@Tag(name = "학습 기록 API", description = "학습 기록 생성, 카테고리별 조회, 날짜별 조회 기능 제공 ")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/learning-histories")
