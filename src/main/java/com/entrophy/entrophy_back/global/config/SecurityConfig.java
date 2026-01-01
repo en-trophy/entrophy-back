@@ -44,7 +44,7 @@ public class SecurityConfig {
                                 "/api/categories/**",
                                 "/api/lessons/**",
                                 "/api/storage/**",
-                                "/api/lessons/**/answer-frames/**"
+                                "/api/lessons/*/answer-frames/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
