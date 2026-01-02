@@ -8,8 +8,6 @@ public record UserResponse(
 
          String loginId,
 
-         String password,
-
          String name,
 
          LocalDateTime createdAt,
