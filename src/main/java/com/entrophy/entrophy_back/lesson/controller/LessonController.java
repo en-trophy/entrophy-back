@@ -3,6 +3,7 @@ package com.entrophy.entrophy_back.lesson.controller;
 
 import com.entrophy.entrophy_back.category.dto.response.CategoryResponse;
 import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
+import com.entrophy.entrophy_back.lesson.dto.response.LessonAnswerFrameCountResponse;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.service.LessonService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -63,6 +64,14 @@ public class LessonController {
         LessonResponse lesson = lessonService.updateLesson(id, lessonRequest);
         return ResponseEntity.ok(lesson);
     }
+
+    //레슨 정답 프레임 개수 조회
+    @GetMapping("/{id}/answer-frames/count")
+    @Operation(summary = "레슨 정답 프레임 개수 조회", description = "lessonId에 해당하는 정답 프레임 개수를 반환")
+    public ResponseEntity<LessonAnswerFrameCountResponse> getAnswerFrameCount(@PathVariable Long id) {
+        return ResponseEntity.ok(lessonService.getAnswerFrameCount(id));
+    }
+
 
 
 }
