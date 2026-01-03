@@ -1,8 +1,10 @@
 package com.entrophy.entrophy_back.lesson.service;
 
+import com.entrophy.entrophy_back.answerframe.repository.AnswerFrameRepository;
 import com.entrophy.entrophy_back.category.entity.Category;
 import com.entrophy.entrophy_back.category.repository.CategoryRepository;
 import com.entrophy.entrophy_back.lesson.dto.request.LessonRequest;
+import com.entrophy.entrophy_back.lesson.dto.response.LessonAnswerFrameCountResponse;
 import com.entrophy.entrophy_back.lesson.dto.response.LessonResponse;
 import com.entrophy.entrophy_back.lesson.entity.Lesson;
 import com.entrophy.entrophy_back.lesson.repository.LessonRepository;
@@ -18,6 +20,7 @@ public class LessonService {
 
     private final LessonRepository lessonRepository;
     private final CategoryRepository categoryRepository;
+    private final AnswerFrameRepository answerFrameRepository;
 
 
     // 생성
@@ -68,6 +71,17 @@ public class LessonService {
 
         return toResponseDto(lesson);
     }
+
+
+    // 레슨 정답 프레임 개수 조회
+    public LessonAnswerFrameCountResponse getAnswerFrameCount(Long id) {
+
+        if (!lessonRepository.existsById(id)) { throw new IllegalArgumentException("해당 id의 레슨 없음");}
+
+        long count = answerFrameRepository.countByLesson_Id(id);
+        return new LessonAnswerFrameCountResponse(id, count);
+    }
+
 
 
     private LessonResponse toResponseDto(Lesson lesson) {
