@@ -19,12 +19,18 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean bootJar -x test
+        run: ./gradlew clean bootJar -x test --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: >-
+            -Dorg.gradle.jvmargs="-Xmx2g -Dfile.encoding=UTF-8"
+            -Dorg.gradle.internal.http.connectionTimeout=60000
+            -Dorg.gradle.internal.http.socketTimeout=60000
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
