@@ -76,12 +76,30 @@ public class LessonService {
     // 레슨 정답 프레임 개수 조회
     public LessonAnswerFrameCountResponse getAnswerFrameCount(Long id) {
 
-        if (!lessonRepository.existsById(id)) { throw new IllegalArgumentException("해당 id의 레슨 없음");}
+        if (!lessonRepository.existsById(id)) {
+            throw new IllegalArgumentException("해당 id의 레슨 없음");
+        }
 
         long count = answerFrameRepository.countByLesson_Id(id);
         return new LessonAnswerFrameCountResponse(id, count);
     }
 
+    //특정 단어 포함 레슨 검색
+    public List<LessonResponse> searchLessons(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            throw new IllegalArgumentException("keyword는 필수입니다.");
+        }
+
+        String k = keyword.trim();
+        return lessonRepository
+                .findByTitleContainingIgnoreCase(k)
+                .stream()
+                .map(this::toResponseDto)
+                .toList();
+
+
+
+    }
 
 
     private LessonResponse toResponseDto(Lesson lesson) {

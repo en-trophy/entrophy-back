@@ -34,13 +34,24 @@ public class LessonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    // 전체 레슨 조회
     @GetMapping
-    @Operation(summary = "전체 레슨 조회", description = "전체 레슨 목록을 조회")
-    public ResponseEntity<List<LessonResponse>> getLessons() {
-        List<LessonResponse> lessons = lessonService.getLessons();
-        return ResponseEntity.ok(lessons);
+    @Operation(
+            summary = "전체 레슨 조회 (옵션: 키워드 검색)",
+            description = "keyword가 없으면 전체 조회, keyword가 있으면 title 또는 signLanguage에 포함된 레슨을 조회"
+    )
+    public ResponseEntity<List<LessonResponse>> getLessons(
+            @Parameter(description = "검색 키워드(선택)", example = "안녕하세요")
+            @RequestParam(required = false) String keyword
+    ) {
+        // keyword가 null 또는 공백이면 전체 조회
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return ResponseEntity.ok(lessonService.getLessons());
+        }
+
+        // keyword 있으면 검색 조회
+        return ResponseEntity.ok(lessonService.searchLessons(keyword));
     }
+
 
     // 카테고리별 레슨 조회
     @Operation(summary = "카테고리별 레슨 목록 조회", description = "categoryId에 해당하는 레슨 목록을 조회")
@@ -71,7 +82,6 @@ public class LessonController {
     public ResponseEntity<LessonAnswerFrameCountResponse> getAnswerFrameCount(@PathVariable Long id) {
         return ResponseEntity.ok(lessonService.getAnswerFrameCount(id));
     }
-
 
 
 }
