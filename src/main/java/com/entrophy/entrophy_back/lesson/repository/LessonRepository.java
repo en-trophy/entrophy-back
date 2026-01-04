@@ -10,4 +10,5 @@ import java.util.List;
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
     List<Lesson> findByCategory_Id(Long categoryId);
+    List<Lesson> findByTitleContainingIgnoreCaseOrSignLanguageContainingIgnoreCase(String titleKeyword, String signLanguageKeyword);;
 }
